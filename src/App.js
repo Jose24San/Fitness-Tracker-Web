@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 import { Header } from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Authentication/Login';
+import { firebaseService } from './utilities/firebase';
 
 
 const config = {
@@ -22,30 +23,47 @@ firebase.initializeApp( config );
 const store = configureStore();
 
 class App extends Component {
+  constructor( props ) {
+    super( props );
+    this.state = {
+      isLoggedIn: false,
+    };
+  }
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged( user => {
       if ( user ) {
         console.log( 'user is logged in: ', user );
+        this.setState( {
+          isLoggedIn: true,
+        } );
       }
     } );
 
-    setTimeout( () => {
-      firebase.auth().signInWithEmailAndPassword( 'sanchez24jose@gmail.com', 'butthead' );
-    }, 2000 );
+    // setTimeout( () => {
+    //   firebase.auth().signInWithEmailAndPassword( 'sanchez24jose@gmail.com', 'butthead' );
+    // }, 2000 );
   }
+
+  logOut = () => {
+    console.log('log out has been called');
+    firebaseService.logOut();
+  };
 
   render() {
     const app = firebase.app();
     const features = [ 'auth', 'database', 'messaging', 'storage', 'firestore' ].filter( feature => typeof app[ feature ] === 'function' );
 
 
-    console.log( 'what is in firebase', app );
-    console.log( 'what is in features: ', features );
+    // console.log( 'what is in firebase', app );
+    // console.log( 'what is in features: ', features );
+    console.log('Is user logged in? ', this.state.isLoggedIn);
+    console.log('what user info do we have : ', this.state.user);
 
     return (
       <Provider store={ store }>
         <Router>
-          <Header />
+          <Header logOut={ this.logOut } />
 
           <Route path="/" exact component={ Home } />
           <Route path="/Login" exact component={ Login } />

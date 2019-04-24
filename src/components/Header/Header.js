@@ -39,7 +39,13 @@ function ButtonAppBar( props ) {
             <Link className={ classes.link } to="/">Fitness App</Link>
           </Typography>
           <Button color="inherit">
+            <Link className={ classes.link } to="/dashboard">Dashboard</Link>
+          </Button>
+          <Button color="inherit">
             <Link className={ classes.link } to="/login">Login</Link>
+          </Button>
+          <Button color="inherit" onClick={ () => props.logOut() }>
+            LOGOUT
           </Button>
         </Toolbar>
       </AppBar>
