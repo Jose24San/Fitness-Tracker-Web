@@ -8,6 +8,7 @@ import { Header } from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Authentication/Login';
 import { firebaseService } from './utilities/firebase';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 const config = {
@@ -26,19 +27,19 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: false,
+      // isLoggedIn: false,
     };
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged( user => {
-      if ( user ) {
-        console.log( 'user is logged in: ', user );
-        this.setState( {
-          isLoggedIn: true,
-        } );
-      }
-    } );
+    // firebase.auth().onAuthStateChanged( user => {
+    //   if ( user ) {
+    //     console.log( 'user is logged in: ', user );
+    //     this.setState( {
+    //       isLoggedIn: true,
+    //     } );
+    //   }
+    // } );
 
     // setTimeout( () => {
     //   firebase.auth().signInWithEmailAndPassword( 'sanchez24jose@gmail.com', 'butthead' );
@@ -57,8 +58,8 @@ class App extends Component {
 
     // console.log( 'what is in firebase', app );
     // console.log( 'what is in features: ', features );
-    console.log('Is user logged in? ', this.state.isLoggedIn);
-    console.log('what user info do we have : ', this.state.user);
+    // console.log('Is user logged in? ', this.state.isLoggedIn);
+    // console.log('what user info do we have : ', this.state.user);
 
     return (
       <Provider store={ store }>
@@ -66,7 +67,8 @@ class App extends Component {
           <Header logOut={ this.logOut } />
 
           <Route path="/" exact component={ Home } />
-          <Route path="/Login" exact component={ Login } />
+          <Route path="/login" exact component={ Login } />
+          <Route path="/dashboard" exact component={ Dashboard } />
 
         </Router>
         {/*<div className="App">*/ }

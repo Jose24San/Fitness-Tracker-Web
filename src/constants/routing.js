@@ -1,0 +1,3 @@
+
+
+export const REDIRECT_TO_LOGIN = 'REDIRECT_TO_LOGIN';

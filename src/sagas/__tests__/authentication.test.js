@@ -1,12 +1,13 @@
 import { cloneableGenerator } from '@redux-saga/testing-utils';
 import { call, put, takeEvery, fork } from 'redux-saga/effects';
+import { expectSaga } from 'redux-saga-test-plan';
 import { login, loginREST, watchLoginRequest } from '../authentication';
+import * as matchers from 'redux-saga-test-plan/matchers';
 import { LOGIN_REQUEST } from '../../constants/authentication';
 import { loginFailedAction, loginSuccessAction } from '../../actions/authentication';
 import { hideLoading, showLoading } from '../../actions/loading';
 import { AUTHENTICATION } from '../../constants/domains';
 import { handleErrorAction } from '../../actions/errors';
-
 
 /*
 *
@@ -20,6 +21,26 @@ import { handleErrorAction } from '../../actions/errors';
 
 
 describe( 'Authentication saga functionality', () => {
+
+  // it( 'Logs user in', () => {
+  //   const action = { payload: { email: 'test@gmail.com', password: 'test' } };
+  //   const response = { email: 'test@gmail.com', password: 'test' };
+  //
+  //   return expectSaga( login, action )
+  //     .provide(
+  //       [
+  //         call(
+  //           [ firebase.auth(), firebase.auth().signInWithEmailAndPassword ],
+  //           action.payload.email,
+  //           action.payload.password,
+  //         ), response ],
+  //     )
+  //     .put( showLoading( { domain: AUTHENTICATION } ) )
+  //     .put( loginSuccessAction( { email: 'test@gmail.com', password: 'test' } ) )
+  //     .run();
+  //
+  //
+  // } );
 
   /*
     * request happens

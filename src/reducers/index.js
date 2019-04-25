@@ -11,6 +11,7 @@ import logs from './logs';
 import building from './building';
 import tracking from './tracking';
 import authentication from './authentication';
+import routing from './routing';
 
 const reducers = combineReducers( {
   // Domain data from the server
@@ -21,6 +22,7 @@ const reducers = combineReducers( {
   workouts,
   loading,
   errors,
+  routing,
   // EDIT state for core Domains in app
   authentication,
   profile,

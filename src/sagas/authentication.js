@@ -1,5 +1,5 @@
 import { takeEvery, call, put, take, select } from 'redux-saga/effects';
-import { eventChannel, delay } from 'redux-saga';
+import { eventChannel } from 'redux-saga';
 import * as firebase from 'firebase';
 import { LOGIN_REQUEST } from '../constants/authentication';
 import { handleErrorAction } from '../actions/errors';
@@ -28,7 +28,6 @@ export function* login( action ) {
 
     const { email, uid } = response.user;
     yield put( loginSuccessAction( { email, uid } ) );
-    console.log( 'user after auth: ', response );
   }
   catch ( error ) {
     console.log( 'error logging in', error );
