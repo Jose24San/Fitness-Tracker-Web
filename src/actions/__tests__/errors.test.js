@@ -1,6 +1,6 @@
 import { HANDLE_ERROR } from '../../constants/errors';
 import { handleErrorAction } from '../errors';
-import { AUTHENTICATION } from '../../constants/domains';
+import { AUTHENTICATION } from '../../constants/reducerObjects';
 
 
 /*

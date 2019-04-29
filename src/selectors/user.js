@@ -14,3 +14,14 @@ export const getAuthenticaton = createSelector(
     }
   },
 );
+
+export const getPreferredWeightMeasurement = createSelector(
+  state => getUser( state ),
+  user => {
+    if ( user.uid !== undefined && user.uid !== '' ) {
+      return user.preferredWeightMeasurement;
+    }
+
+    return 'lbs';
+  },
+);

@@ -1,16 +1,17 @@
-import { getUser, getAuthenticaton } from '../user';
+import { getUser, getAuthenticaton, getPreferredWeightMeasurement } from '../user';
 
 const state = {
   user: {
     email: '',
     uid: '',
+    preferredWeightMeasurement: 'lbs',
   },
 };
 
 describe( 'user selectors', () => {
 
   it( 'should user the user reducer', () => {
-    expect( getUser( state ) ).toEqual( { email: '', uid: '' } );
+    expect( getUser( state ) ).toEqual( { email: '', uid: '', preferredWeightMeasurement: 'lbs' } );
   } );
 
   it( 'should return boolean depending on whether the user is logged in', () => {
@@ -24,6 +25,12 @@ describe( 'user selectors', () => {
       },
     };
     expect( getAuthenticaton( loggedInState ) ).toEqual( true );
+  } );
+
+  it( 'getPrefferedWeightMeasurement() should return either lbs or kgs', () => {
+
+    expect( getPreferredWeightMeasurement( state ) ).toEqual( 'lbs' );
+
   } );
 
 } );

@@ -5,8 +5,8 @@ import { login, loginREST, watchLoginRequest } from '../authentication';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { LOGIN_REQUEST } from '../../constants/authentication';
 import { loginFailedAction, loginSuccessAction } from '../../actions/authentication';
-import { hideLoading, showLoading } from '../../actions/loading';
-import { AUTHENTICATION } from '../../constants/domains';
+import { hideLoadingAction, showLoadingAction } from '../../actions/loading';
+import { AUTHENTICATION } from '../../constants/reducerObjects';
 import { handleErrorAction } from '../../actions/errors';
 
 /*
@@ -35,7 +35,7 @@ describe( 'Authentication saga functionality', () => {
   //           action.payload.password,
   //         ), response ],
   //     )
-  //     .put( showLoading( { domain: AUTHENTICATION } ) )
+  //     .put( showLoadingAction( { domain: AUTHENTICATION } ) )
   //     .put( loginSuccessAction( { email: 'test@gmail.com', password: 'test' } ) )
   //     .run();
   //
@@ -65,9 +65,9 @@ describe( 'Authentication saga functionality', () => {
     const { email, password } = action.payload;
     const gen = cloneableGenerator( login )( action );
 
-    it( 'should put showLoading()', () => {
+    it( 'should put showLoadingAction()', () => {
       expect( gen.next().value )
-        .toEqual( put( showLoading( { domain: AUTHENTICATION } ) ) );
+        .toEqual( put( showLoadingAction( { dataType: AUTHENTICATION } ) ) );
     } );
 
     it( 'should call loginREST', () => {
@@ -85,7 +85,7 @@ describe( 'Authentication saga functionality', () => {
       expect( clone.throw( error ).value ).toEqual( put( loginFailedAction() ) );
 
       expect( clone.next().value ).toEqual( put(
-        handleErrorAction( { error, domain: AUTHENTICATION } ),
+        handleErrorAction( { error, dataType: AUTHENTICATION } ),
       ) );
 
     } );
@@ -98,9 +98,9 @@ describe( 'Authentication saga functionality', () => {
         );
     } );
 
-    it( 'should put hideLoading()', () => {
-      const payload = { domain: AUTHENTICATION };
-      expect( gen.next().value ).toEqual( put( hideLoading( payload ) ) );
+    it( 'should put hideLoadingAction()', () => {
+      const payload = { dataType: AUTHENTICATION };
+      expect( gen.next().value ).toEqual( put( hideLoadingAction( payload ) ) );
     } );
 
     it( 'login() saga should be finished', () => {

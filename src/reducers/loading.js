@@ -7,13 +7,13 @@ export default function loading( state = {}, action ) {
     case SHOW_LOADING:
       return {
         ...state,
-        [ action.payload.domain ]: true,
+        [ action.payload.dataType ]: true,
       };
 
     case HIDE_LOADING:
       return {
         ...state,
-        [ action.payload.domain ]: false,
+        [ action.payload.dataType ]: false,
       };
 
     default: return state;

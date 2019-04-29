@@ -12,9 +12,11 @@ import building from './building';
 import tracking from './tracking';
 import authentication from './authentication';
 import routing from './routing';
+import bodyLogs from './bodyLogs';
 
 const reducers = combineReducers( {
   // Domain data from the server
+  bodyLogs,
   user,
   exerciseList,
   exercises,

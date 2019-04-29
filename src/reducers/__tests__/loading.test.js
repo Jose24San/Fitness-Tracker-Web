@@ -1,6 +1,6 @@
 import loading from '../loading';
-import { AUTHENTICATION } from '../../constants/domains';
-import { hideLoading, showLoading } from '../../actions/loading';
+import { AUTHENTICATION } from '../../constants/reducerObjects';
+import { hideLoadingAction, showLoadingAction } from '../../actions/loading';
 
 
 describe( 'loading reducer unit tests', () => {
@@ -9,16 +9,16 @@ describe( 'loading reducer unit tests', () => {
     expect( loading( {}, {} ) ).toEqual( {} );
   } );
 
-  it( 'should handle change loading flag to true for specified domain', () => {
-    const action = showLoading( { domain: AUTHENTICATION } );
+  it( 'should handle change loading flag to true for specified dataType', () => {
+    const action = showLoadingAction( { dataType: AUTHENTICATION } );
     const expectedState = {
       [ AUTHENTICATION ]: true,
     };
     expect( loading( {}, action ) ).toEqual( expectedState );
   } );
 
-  it( 'should handle change loading flag to false for specified domain', () => {
-    const action = hideLoading( { domain: AUTHENTICATION } );
+  it( 'should handle change loading flag to false for specified dataType', () => {
+    const action = hideLoadingAction( { dataType: AUTHENTICATION } );
     const expectedState = { [ AUTHENTICATION ]: false };
 
     expect( loading( {}, action ) ).toEqual( expectedState );

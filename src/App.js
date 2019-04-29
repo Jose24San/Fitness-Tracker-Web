@@ -52,8 +52,8 @@ class App extends Component {
   };
 
   render() {
-    const app = firebase.app();
-    const features = [ 'auth', 'database', 'messaging', 'storage', 'firestore' ].filter( feature => typeof app[ feature ] === 'function' );
+    // const app = firebase.app();
+    // const features = [ 'auth', 'database', 'messaging', 'storage', 'firestore' ].filter( feature => typeof app[ feature ] === 'function' );
 
 
     // console.log( 'what is in firebase', app );

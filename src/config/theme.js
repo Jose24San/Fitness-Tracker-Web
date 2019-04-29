@@ -1,4 +1,4 @@
-export default {
+const globalTheme = {
   FONT_SIZE_SMALL: 14,
   FONT_SIZE_MEDIUM: 16,
   FONT_SIZE_LARGE: 18,
@@ -8,8 +8,8 @@ export default {
   FONT_WEIGHT_MEDIUM: '600',
   FONT_WEIGHT_BOLD: '700',
 
-  // DARK_FONT: '#000',
-  // LIGHT_FONT: '#fff',
+  DARK_FONT: '#000',
+  LIGHT_FONT: '#fff',
 
   // PRIMARY_FONT_FAMILY: 'AvenirNextCondensed-Regular',
   PRIMARY_FONT_FAMILY: 'RobotoCondensed-Regular',
@@ -20,6 +20,10 @@ export default {
   //colors
   PRIMARY_BACKGROUND: '#32333D',
   SECONDARY_BACKGROUND: '#47474D',
+
+  LIGHT_DARK_BACKGROUND: '#3c4047',
+  MIDDLE_DARK_BACKGROUND: '#363a43',
+  DARK_BACKGROUND: '#22262d',
 
   PRIMARY_COLOR: '#364590',
 
@@ -52,3 +56,5 @@ export default {
   ACCENT_BLUE: '#72DEFF',
   ACCENT_GREEN: '#1EB980',
 };
+
+export default globalTheme;
