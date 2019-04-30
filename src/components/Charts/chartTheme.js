@@ -40,7 +40,7 @@ const chartTheme = {
         // stroke: lightGrey,
         strokeWidth: 0,
         fill: lightGrey,
-        padding: 5,
+        padding: 10,
       },
     },
   },

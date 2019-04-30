@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { VictoryLine, VictoryChart, VictoryAxis, VictoryLabel } from 'victory';
+import { VictoryLine, VictoryChart, VictoryAxis } from 'victory';
 import chartTheme from './chartTheme';
-
 
 class LineChart extends Component {
   constructor( props ) {
@@ -11,28 +10,31 @@ class LineChart extends Component {
   }
 
   render() {
-    const { horizontalLabel, verticalLabel, topLabel, data, containerStyling } = this.props;
+    const { horizontalLabel, verticalLabel, data, containerStyling, minDomain, maxDomain } = this.props;
 
     return (
       <div style={ containerStyling }>
-        <VictoryChart theme={ chartTheme }>
-          {/*<VictoryLabel text={ topLabel } textAnchor="middle" x={225} y={30} style={ { color: 'white' } } />*/}
+        <VictoryChart
+          theme={ chartTheme }
+          minDomain={ { y: minDomain } }
+          maxDomain={ { y: maxDomain } }
+        >
           <VictoryAxis label={ horizontalLabel } />
           <VictoryAxis dependentAxis label={ verticalLabel } />
           <VictoryLine data={ data } />
         </VictoryChart>
       </div>
-
     );
   }
 }
 
 LineChart.propTypes = {
   data: PropTypes.array,
-  topLabel: PropTypes.string,
   horizontalLabel: PropTypes.string,
   verticalLabel: PropTypes.string,
   containerStyling: PropTypes.object,
+  maxDomain: PropTypes.number,
+  minDomain: PropTypes.number,
 };
 
 export default LineChart;

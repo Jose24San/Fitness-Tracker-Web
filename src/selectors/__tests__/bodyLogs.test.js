@@ -2,7 +2,7 @@ import {
   getBodyLogs,
   getBodyLogsByAmount,
   getBodyLogsByChartFormat,
-  getBodyLogsByMetric,
+  getBodyLogsByMetric, getDomainMinAndMax,
   getSpecifiedBodyLogs,
 } from '../bodyLogs';
 import { CHART_FORMATS } from '../../constants/bodyLogs';
@@ -45,7 +45,7 @@ describe( 'Body log selectors', () => {
     expect( getBodyLogs( state ) ).toEqual( state.bodyLogs );
   } );
 
-  it( 'getBodyLogsByAmount should return specified amount of body logs', () => {
+  it( 'getBodyLogsByAmount() should return specified amount of body logs', () => {
     const expectedState = [
       {
         uid: '48DMDv7hJHE1l9LSDIKH',
@@ -66,7 +66,7 @@ describe( 'Body log selectors', () => {
       .toEqual( expectedState );
   } );
 
-  it( 'getBodyLogsByMetric should return only the metric related data', () => {
+  it( 'getBodyLogsByMetric() should return only the metric related data', () => {
 
     const expectedState = [
       {
@@ -90,7 +90,7 @@ describe( 'Body log selectors', () => {
 
   } );
 
-  it( 'getBodyLogsByChartFormat should return the correct format for a specific chart', () => {
+  it( 'getBodyLogsByChartFormat() should return the correct format for a specific chart', () => {
     const expectedState = [
       { x: '4/24', y: 175.2, measurement: 'lbs' },
       { x: '4/20', y: 176.5, measurement: 'lbs' },
@@ -106,8 +106,11 @@ describe( 'Body log selectors', () => {
 
   it( 'getSpecifiedBodyLogs() should return body logs with amount, metric and chart format if specificed', () => {
 
-
-    const expectedState = [ { x: '4/24', y: 175.2, measurement: 'lbs' } ];
+    const expectedState = {
+      data: [ { x: '4/24', y: 175.2, measurement: 'lbs' } ],
+      maxDomainValue: 176,
+      minDomainValue: 175,
+    };
 
     const options = {
       amount: 1,
@@ -117,6 +120,18 @@ describe( 'Body log selectors', () => {
 
     expect( getSpecifiedBodyLogs( state, options ) ).toEqual( expectedState );
 
+  } );
+
+  it( 'getDomainMinAndMax() should return min and max domain for a given dataset', () => {
+
+    const expectedState = { minDomainValue: 174, maxDomainValue: 178 };
+
+    const data = [
+      { x: '4/24', y: 175.2 },
+      { x: '4/20', y: 176.5 },
+    ];
+
+    expect( getDomainMinAndMax( data, 'y' ) ).toEqual( expectedState );
 
   } );
 

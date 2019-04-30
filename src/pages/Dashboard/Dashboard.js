@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { getAuthenticaton, getUser } from '../../selectors/user';
+import { getAuthenticaton, getPreferredWeightMeasurement, getUser } from '../../selectors/user';
 import { showRedirectMessage } from '../../actions/routing';
 import SideMenu from '../../components/Menu/SideMenu';
 import { DashboardCard } from '../../components/Cards';
@@ -35,7 +35,7 @@ class Dashboard extends Component {
 
   render() {
     console.log('Dashboard props: ', this.props);
-    const { bodyLogs } = this.props;
+    const { bodyLogs, measurement } = this.props;
     // if ( !this.props.isLoggedIn ) {
     //   // console.warn('redirect from dashboard to login page');
     //   this.props.redirected( 'Dashboard' );
@@ -49,7 +49,7 @@ class Dashboard extends Component {
           <p style={ styles.white }>Dashboard Control Panel</p>
           <DashboardCard>
             <h2 style={ styles.header }>
-              Weight Over Time in
+              Weight Over Time in { measurement }
             </h2>
             <LineChart
               containerStyling={ { height: 330 } }
@@ -60,9 +60,11 @@ class Dashboard extends Component {
               //   { x: 4, y: 4 },
               //   { x: 5, y: 7 },
               // ] }
-              data={ this.props.bodyLogs }
+              data={ bodyLogs.data }
               horizontalLabel=""
               verticalLabel=""
+              maxDomain={ bodyLogs.maxDomainValue }
+              minDomain={ bodyLogs.minDomainValue }
             />
           </DashboardCard>
         </div>
@@ -85,6 +87,7 @@ const mapStatetoProps = state => {
     user: getUser( state ),
     // bodyLogs: getBodyLogsByAmount( state, 10 ),
     bodyLogs: getSpecifiedBodyLogs( state, { amount: 10, metric: 'weight', format: CHART_FORMATS.LINE_CHART } ),
+    measurement: getPreferredWeightMeasurement( state ),
   };
 };
 
