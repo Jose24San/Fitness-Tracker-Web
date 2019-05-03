@@ -7,7 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import globalTheme from '../../config/theme';
 
 const styles = theme => ( {
   root: {
@@ -27,9 +26,7 @@ const styles = theme => ( {
 let key = 0;
 const getKey = () => key += 1;
 
-function Table( { classes, rowHeaders, rowData } ) {
-  console.log('row data: ', rowData);
-
+function Table( { classes, rowHeaders, rowData, hightLightColor } ) {
   return (
     <Paper className={ classes.root }>
       <BaseTable className={ classes.table }>
@@ -47,10 +44,19 @@ function Table( { classes, rowHeaders, rowData } ) {
         <TableBody>
           {
             rowData.map( row => (
-              <TableRow key={ row[ 0 ] }>
+              <TableRow key={ row[ 0 ].title }>
                 {
                   row.map( cell => (
-                    <TableCell key={ getKey() }>{ cell }</TableCell>
+                    <TableCell
+                      key={ getKey() }
+                      style={
+                        ( cell.highlight )
+                          ? { background: hightLightColor }
+                          : { background: 'transparent' }
+                      }
+                    >
+                      { cell.title }
+                    </TableCell>
                   ) )
                 }
               </TableRow>

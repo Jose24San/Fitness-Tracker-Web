@@ -23,7 +23,7 @@ class Build extends Component {
     return (
       <div style={ styles.mainArea }>
         <p>Build page</p>
-        <Accordion title="Volume Recommendations">
+        <Accordion title="Volume Recommendations Per Week">
           <Table rowData={ rowData } rowHeaders={ rowHeaders } />
         </Accordion>
       </div>

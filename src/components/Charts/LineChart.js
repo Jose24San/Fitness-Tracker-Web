@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { VictoryLine, VictoryChart, VictoryAxis } from 'victory';
 import chartTheme from './chartTheme';
-import globalTheme from '../../config/theme';
 
 class LineChart extends Component {
   constructor( props ) {
@@ -14,7 +13,7 @@ class LineChart extends Component {
     const { horizontalLabel, verticalLabel, data, containerStyling, minDomain, maxDomain } = this.props;
 
     return (
-      <div style={ containerStyling }>
+      <div style={ { boxShadow: '1px 2px 3px #888', ...containerStyling } }>
         <VictoryChart
           theme={ chartTheme }
           minDomain={ { y: minDomain } }

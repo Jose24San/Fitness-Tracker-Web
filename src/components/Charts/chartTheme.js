@@ -63,7 +63,7 @@ const chartTheme = {
     },
   },
   chart: {
-    padding: { left: 70, top: 20, right: 50, bottom: 40 },
+    padding: { left: 70, top: 20, right: 40, bottom: 40 },
   },
   line: {
     style: {
