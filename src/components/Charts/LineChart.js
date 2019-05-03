@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { VictoryLine, VictoryChart, VictoryAxis } from 'victory';
 import chartTheme from './chartTheme';
+import globalTheme from '../../config/theme';
 
 class LineChart extends Component {
   constructor( props ) {

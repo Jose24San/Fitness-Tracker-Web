@@ -8,7 +8,7 @@ storiesOf( 'Accordion', module )
   .add( 'standard', () => (
     <div
       style={ {
-        background: globalTheme.MIDDLE_DARK_BACKGROUND,
+        background: globalTheme.GREY_BACKGROUND,
         height: 500,
         padding: 60,
       } }

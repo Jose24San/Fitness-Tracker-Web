@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import globalTheme from '../../config/theme';
 import Accordion from '../../components/Accordion/Accordion';
+import { rowHeaders, rowData } from '../../config/volumeRecommendation';
+import Table from '../../components/Table/Table';
 
 const styles = {
   mainArea: {
     width: '100%',
-    background: globalTheme.MIDDLE_DARK_BACKGROUND,
+    background: globalTheme.GREY_BACKGROUND,
     padding: 40,
   },
 };
@@ -22,7 +24,7 @@ class Build extends Component {
       <div style={ styles.mainArea }>
         <p>Build page</p>
         <Accordion title="Volume Recommendations">
-          <div>Accordion content</div>
+          <Table rowData={ rowData } rowHeaders={ rowHeaders } />
         </Accordion>
       </div>
     );

@@ -9,13 +9,14 @@ storiesOf( 'Charts', module )
   .add( 'Line Chart', () => (
     <div
       style={ {
-        background: globalTheme.MIDDLE_DARK_BACKGROUND,
+        background: globalTheme.GREY_BACKGROUND,
         padding: 60,
       } }
     >
       <div>
         <DashboardCard>
           <LineChart
+            containerStyling={ { backgroundColor: globalTheme.ACCENT_BLUE } }
             data={ [
               { x: 1, y: 2 },
               { x: 2, y: 3 },
@@ -23,8 +24,8 @@ storiesOf( 'Charts', module )
               { x: 4, y: 4 },
               { x: 5, y: 7 },
             ] }
-            horizontalLabel="Body Weight"
-            verticalLabel="Time"
+            // horizontalLabel="Body Weight"
+            // verticalLabel="Time"
           />
         </DashboardCard>
       </div>

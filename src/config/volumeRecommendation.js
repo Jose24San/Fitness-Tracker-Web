@@ -1,9 +1,5 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import Table from '../../../src/components/Table/Table';
-import globalTheme from '../../../src/config/theme';
 
-const rowHeaders = [
+export const rowHeaders = [
   'Muscle Group',
   'Maintenance Volume',
   'Minimum Effective Volume',
@@ -11,7 +7,7 @@ const rowHeaders = [
   'Maximum Recoverable Volume',
 ];
 
-const rowData = [
+export const rowData = [
   [ 'Abs', '0 sets / per week', '0 sets / per week', '16 - 20 sets / per week', '25 sets / per week' ],
   [ 'Back', '8 sets / per week', '10 sets / per week', '14 - 22 sets / per week', '25 sets / per week' ],
   [ 'Biceps', '4 - 6 sets / per week', '8 sets / per week', '14 - 20 sets / per week', '26 sets / per week' ],
@@ -26,16 +22,3 @@ const rowData = [
   [ 'Traps', '0 sets / per week', '0 sets / per week', '12 - 20 sets / per week', '26 sets / per week' ],
   [ 'Triceps', '4 sets / per week', '6 sets / per week', '10 - 15 sets / per week', '18 sets / per week' ],
 ];
-
-storiesOf( 'Table', module )
-  .add( 'standard', () => (
-    <div
-      style={ {
-        background: globalTheme.GREY_BACKGROUND,
-        // height: 500,
-        padding: 60,
-      } }
-    >
-      <Table rowHeaders={ rowHeaders } rowData={ rowData } />
-    </div>
-  ) );

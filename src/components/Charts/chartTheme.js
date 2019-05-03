@@ -1,30 +1,48 @@
 import globalTheme from '../../config/theme';
 
 const lightGrey = '#74777b';
+const baseColor = '#fff';
 const chartTheme = {
   axis: {
     style: {
       axis: {
-        fill: lightGrey,
-        stroke: lightGrey,
+        /*
+        * This is the axis lines on the left border and bottom border
+        * */
+
+        fill: baseColor,
+        stroke: baseColor,
         strokeWidth: 1,
+        strokeDasharray: '10, 5',
         strokeLinecap: 'round',
         strokeLinejoin: 'round',
+        // fill: baseColor,
+        //stroke: baseColor,
+        // strokeWidth: 1,
+        // strokeLinecap: 'round',
+        // strokeLinejoin: 'round',
       },
       axisLabel: {
         // padding: 40,
         // padding: { left: 20, top: 30, bottom: 30, right: 30 },
-        textAnchor: 'middle',
-        strokeWidth: 0,
+        // textAnchor: 'middle',
+        // strokeWidth: 0,
         // Changes the text color of the labels
-        fill: globalTheme.LIGHT_FONT,
+        // fill: baseColor,
       },
       grid: {
-        fill: lightGrey,
+        /*
+        * This is just the grid but not the lines on the left border or bottom border
+        * */
+
+        fill: baseColor,
         // remove the grid behind the chart
         // stroke: 'none',
-        stroke: lightGrey,
+        stroke: baseColor,
         strokeWidth: 1,
+        strokeDasharray: '10, 5',
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
       },
       ticks: {
         fill: 'transparent',
@@ -39,22 +57,23 @@ const chartTheme = {
         // stroke is not doing anything
         // stroke: lightGrey,
         strokeWidth: 0,
-        fill: lightGrey,
+        fill: baseColor,
         padding: 10,
       },
     },
   },
   chart: {
-    // padding: 70,
+    padding: { left: 70, top: 20, right: 50, bottom: 40 },
   },
   line: {
     style: {
       data: {
-        fill: 'transparent',
-        stroke: globalTheme.ACCENT_PURPLE,
+        // fill: 'transparent',
+        stroke: '#fff',
+        strokeWidth: 4,
       },
       labels: {
-        padding: { left: 90, top: 50, right: 10, bottom: 50 },
+        // padding: { left: 90, top: 50, right: 10, bottom: 50 },
       },
     },
   },

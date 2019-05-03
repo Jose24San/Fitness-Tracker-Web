@@ -24,6 +24,7 @@ const globalTheme = {
   LIGHT_DARK_BACKGROUND: '#3c4047',
   MIDDLE_DARK_BACKGROUND: '#363a43',
   DARK_BACKGROUND: '#22262d',
+  GREY_BACKGROUND: '#eeeeee',
 
   PRIMARY_COLOR: '#364590',
 
@@ -49,12 +50,16 @@ const globalTheme = {
   ACTIVE_TAB_COLOR: '#72DEFF',
   ACTIVE_TAB_WIDTH: 3,
 
-  ACCENT_RED: '#E25142',
-  ACCENT_ORANGE: '#FF6859',
+  ACCENT_RED: '#e73c3a',
+  ACCENT_ORANGE: '#fea11e',
   ACCENT_YELLOW: '#FFCF44',
   ACCENT_PURPLE: '#B15DFF',
-  ACCENT_BLUE: '#72DEFF',
-  ACCENT_GREEN: '#1EB980',
+  ACCENT_BLUE: '#14bbd0',
+  ACCENT_GREEN: '#51aa55',
+
+
+
+
 };
 
 export default globalTheme;

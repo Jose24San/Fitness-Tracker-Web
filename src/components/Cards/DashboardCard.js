@@ -12,7 +12,7 @@ const styles = {
   card: {
     minWidth: 275,
     width: 'fit-content',
-    background: globalTheme.LIGHT_DARK_BACKGROUND,
+    // background: globalTheme.LIGHT_DARK_BACKGROUND,
   },
   bullet: {
     display: 'inline-block',

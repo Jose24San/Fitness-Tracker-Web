@@ -14,7 +14,7 @@ const styles = theme => ( {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    backgroundColor: globalTheme.LIGHT_DARK_BACKGROUND,
+    // backgroundColor: globalTheme.LIGHT_DARK_BACKGROUND,
   },
   table: {
     minWidth: 700,
@@ -38,7 +38,7 @@ function Table( { classes, rowHeaders, rowData } ) {
           <TableRow>
             {
               rowHeaders.map( header => (
-                <TableCell key={ header } className={ classes.white }>{ header }</TableCell>
+                <TableCell key={ header }>{ header }</TableCell>
               ) )
             }
           </TableRow>
@@ -47,10 +47,10 @@ function Table( { classes, rowHeaders, rowData } ) {
         <TableBody>
           {
             rowData.map( row => (
-              <TableRow key={ row[ 0 ] } test={ console.log( row[ 0 ] ) }>
+              <TableRow key={ row[ 0 ] }>
                 {
                   row.map( cell => (
-                    <TableCell key={ getKey() } className={ classes.white }>{ cell }</TableCell>
+                    <TableCell key={ getKey() }>{ cell }</TableCell>
                   ) )
                 }
               </TableRow>

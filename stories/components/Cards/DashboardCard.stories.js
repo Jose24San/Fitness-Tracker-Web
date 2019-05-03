@@ -7,13 +7,13 @@ storiesOf( 'Cards', module )
   .add( 'Dashboard card', () => (
     <div
       style={ {
-        background: globalTheme.MIDDLE_DARK_BACKGROUND,
+        background: globalTheme.GREY_BACKGROUND,
         height: 500,
         padding: 60,
       } }
     >
       <DashboardCard>
-        <p style={ { color: '#fff' } }>My content</p>
+        <p>My content</p>
       </DashboardCard>
     </div>
   ) );

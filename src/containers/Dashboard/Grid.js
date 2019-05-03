@@ -11,15 +11,15 @@ import { DashboardCard } from '../../components/Cards';
 const styles = {
   mainArea: {
     width: '100%',
-    background: globalTheme.MIDDLE_DARK_BACKGROUND,
+    background: globalTheme.GREY_BACKGROUND,
     padding: 40,
   },
   white: {
     color: globalTheme.LIGHT_FONT,
   },
   header: {
-    color: globalTheme.LIGHT_FONT,
-    marginBottom: '-15',
+    // color: globalTheme.LIGHT_FONT,
+    // marginBottom: '-15',
   },
 };
 
@@ -34,20 +34,21 @@ class Grid extends Component {
 
     return (
       <div style={ styles.mainArea }>
-        <p style={ styles.white }>Dashboard Control Panel</p>
+        <p>Dashboard Control Panel</p>
 
         <DashboardCard>
-          <h2 style={ styles.header }>
-            Weight Over Time in { measurement }
-          </h2>
           <LineChart
-            containerStyling={ { height: 330 } }
+            containerStyling={ { height: 330, background: globalTheme.ACCENT_BLUE } }
             data={ bodyLogs.data }
             horizontalLabel=""
             verticalLabel=""
             maxDomain={ bodyLogs.maxDomainValue }
             minDomain={ bodyLogs.minDomainValue }
           />
+
+          <h2 style={ styles.header }>
+            Weight Over Time in { measurement }
+          </h2>
         </DashboardCard>
 
       </div>

@@ -15,18 +15,18 @@ const styles = theme => ( {
   heading: {
     fontSize: theme.typography.pxToRem( 15 ),
     fontWeight: theme.typography.fontWeightRegular,
-    color: globalTheme.LIGHT_FONT,
+    // color: globalTheme.LIGHT_FONT,
   },
-  background: { background: globalTheme.LIGHT_DARK_BACKGROUND },
-  white: { color: globalTheme.LIGHT_FONT },
+  // background: { background: globalTheme.LIGHT_DARK_BACKGROUND },
+  // white: { color: globalTheme.LIGHT_FONT },
 } );
 
-function Accordion( { classes, title, children } ) {
+function Accordion( { classes, title, children, ...props } ) {
   return (
     <div className={ classes.root }>
-      <ExpansionPanel classes={ { root: classes.background } }>
+      <ExpansionPanel classes={ { root: classes.background } } { ...props }>
 
-        <ExpansionPanelSummary expandIcon={ <ExpandMoreIcon className={ classes.white } /> }>
+        <ExpansionPanelSummary expandIcon={ <ExpandMoreIcon  /> }>
           <Typography className={ classes.heading }>{ title }</Typography>
         </ExpansionPanelSummary>
 
