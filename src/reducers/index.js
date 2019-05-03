@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
 import exerciseList from './exerciseList';
-import exercises from './exercises';
 import programs from './programs';
 import workouts from './workouts';
 import loading from './loading';
@@ -13,18 +12,20 @@ import tracking from './tracking';
 import authentication from './authentication';
 import routing from './routing';
 import bodyLogs from './bodyLogs';
+import completedExercises from './completedExercises';
 
 const reducers = combineReducers( {
   // Domain data from the server
   bodyLogs,
+  completedExercises,
   user,
   exerciseList,
-  exercises,
   programs,
   workouts,
   loading,
   errors,
   routing,
+
   // EDIT state for core Domains in app
   authentication,
   profile,

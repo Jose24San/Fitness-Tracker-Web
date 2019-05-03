@@ -1,5 +1,5 @@
-import moment from 'moment';
 import { RECIEVED_BODY_LOGS } from '../constants/bodyLogs';
+import dateHelpers from '../utilities/dateHelpers';
 
 export const handleLogs = ( state, action ) => {
 
@@ -9,13 +9,9 @@ export const handleLogs = ( state, action ) => {
         ...log,
         trackedOn: {
           ...log.trackedOn,
-          formatted: moment( moment.unix( log.trackedOn.seconds ) )
-            .format( 'MM/DD/YYYY' ),
+          formatted: dateHelpers.formatUnix( log.trackedOn.seconds ),
         },
       };
-    } )
-    .sort( ( a, b ) => {
-      return new Date( b.trackedOn.formatted ) - new Date( a.trackedOn.formatted );
     } );
 };
 

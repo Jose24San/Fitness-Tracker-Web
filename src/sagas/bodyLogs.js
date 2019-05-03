@@ -1,12 +1,13 @@
 import { put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
+import * as firebase from 'firebase';
 import { BODY_LOGS } from '../constants/reducerObjects';
 import { hideLoadingAction, showLoadingAction } from '../actions/loading';
-import { firebaseService } from '../utilities/firebase';
 import {
   listenForBodyLogsAction,
   recievedBodyLogsAction,
 } from '../actions/bodyLogs';
+import dateHelpers from '../utilities/dateHelpers';
 
 
 export function* bodyLogsListener( uid ) {
@@ -15,15 +16,20 @@ export function* bodyLogsListener( uid ) {
   yield put( listenForBodyLogsAction( { uid } ) );
 
   const channel = new eventChannel( emiter => {
-    const listener = firebaseService.listenToBodyLogs( uid ).onSnapshot( querySnapshot => {
+    const listener = firebase.firestore()
+      .collection( 'bodyLogs' )
+      .where( 'userId', '==', uid )
+      .onSnapshot( querySnapshot => {
 
-      const bodyLogs = [];
-      querySnapshot.forEach( document => {
-        bodyLogs.push( { uid: document.id, ...document.data() } );
+        const bodyLogs = [];
+        querySnapshot.forEach( document => {
+          bodyLogs.push( { uid: document.id, ...document.data() } );
+        } );
+
+        const sorted = dateHelpers.sortByDate( bodyLogs, 'descending', 'trackedOn' );
+
+        emiter( sorted );
       } );
-
-      emiter( bodyLogs );
-    } );
 
     // #2
     return () => {

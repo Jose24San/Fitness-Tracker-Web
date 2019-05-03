@@ -1,7 +1,5 @@
 import bodyLogs from '../bodyLogs';
-import { RECIEVED_BODY_LOGS } from '../../constants/bodyLogs';
-import { listenForBodyLogsAction, recievedBodyLogsAction } from '../../actions/bodyLogs';
-import moment from 'moment';
+import { recievedBodyLogsAction } from '../../actions/bodyLogs';
 
 
 describe( 'Body logs reducer', () => {
@@ -30,16 +28,16 @@ describe( 'Body logs reducer', () => {
     const expectedState = [
       {
         trackedOn: {
-          seconds: 1555045200,
+          formatted:'03/13/2019',
+          seconds: 1552453200,
           nanoseconds: 0,
-          formatted: '04/12/2019',
         },
       },
       {
         trackedOn: {
-          seconds: 1552453200,
+          formatted: '04/12/2019',
+          seconds: 1555045200,
           nanoseconds: 0,
-          formatted: '03/13/2019',
         },
       },
     ];

@@ -1,5 +1,5 @@
-import { HANDLE_ERROR } from '../../constants/errors';
-import { handleErrorAction } from '../errors';
+import { CLEAR_ERROR, HANDLE_ERROR } from '../../constants/errors';
+import { clearErrorAction, handleErrorAction } from '../errors';
 import { AUTHENTICATION } from '../../constants/reducerObjects';
 
 
@@ -14,7 +14,7 @@ import { AUTHENTICATION } from '../../constants/reducerObjects';
 * */
 
 
-describe( 'Error action creators', () => {
+describe( 'Alert action creators', () => {
 
   it( 'handleError() should take an error information from a bad response', () => {
     const expectedAction = {
@@ -25,6 +25,15 @@ describe( 'Error action creators', () => {
     const payload = { [ AUTHENTICATION ]: { error: 'error message' } };
 
     expect( handleErrorAction( payload ) ).toEqual( expectedAction );
+  } );
+
+  it( 'clearErrorAction() should clear the error once the user hits ok', () => {
+    const expectedAction = {
+      type: CLEAR_ERROR,
+      payload: undefined,
+    };
+
+    expect( clearErrorAction() ).toEqual( expectedAction );
   } );
 
 } );

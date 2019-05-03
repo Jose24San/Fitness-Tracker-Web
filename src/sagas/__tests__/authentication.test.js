@@ -1,10 +1,21 @@
 import { cloneableGenerator } from '@redux-saga/testing-utils';
 import { call, put, takeEvery, fork } from 'redux-saga/effects';
-import { expectSaga } from 'redux-saga-test-plan';
-import { login, loginREST, watchLoginRequest } from '../authentication';
-import * as matchers from 'redux-saga-test-plan/matchers';
-import { LOGIN_REQUEST } from '../../constants/authentication';
-import { loginFailedAction, loginSuccessAction } from '../../actions/authentication';
+import {
+  login,
+  loginREST,
+  watchLoginRequest,
+  watchRegisterRequest,
+  register,
+  registerREST,
+  createUserDocumentREST, watchAuthchanges
+} from '../authentication';
+import { LOGIN_REQUEST, CREATE_USER_REQUEST } from '../../constants/authentication';
+import {
+  createUserFailedAction,
+  createUserSuccessAction,
+  loginFailedAction,
+  loginSuccessAction
+} from '../../actions/authentication';
 import { hideLoadingAction, showLoadingAction } from '../../actions/loading';
 import { AUTHENTICATION } from '../../constants/reducerObjects';
 import { handleErrorAction } from '../../actions/errors';
@@ -21,41 +32,6 @@ import { handleErrorAction } from '../../actions/errors';
 
 
 describe( 'Authentication saga functionality', () => {
-
-  // it( 'Logs user in', () => {
-  //   const action = { payload: { email: 'test@gmail.com', password: 'test' } };
-  //   const response = { email: 'test@gmail.com', password: 'test' };
-  //
-  //   return expectSaga( login, action )
-  //     .provide(
-  //       [
-  //         call(
-  //           [ firebase.auth(), firebase.auth().signInWithEmailAndPassword ],
-  //           action.payload.email,
-  //           action.payload.password,
-  //         ), response ],
-  //     )
-  //     .put( showLoadingAction( { domain: AUTHENTICATION } ) )
-  //     .put( loginSuccessAction( { email: 'test@gmail.com', password: 'test' } ) )
-  //     .run();
-  //
-  //
-  // } );
-
-  /*
-    * request happens
-    *
-    * loading flag changed to true
-    * - loading = true || false
-    * - domain specific
-    * authentication: true
-    *
-    * success happens
-    *
-    * store user credentials inside of user reducer
-    *
-    * change loading flag to false
-    *  */
 
   describe( 'login() saga functionality', () => {
     const action = {
@@ -109,6 +85,55 @@ describe( 'Authentication saga functionality', () => {
 
   } );
 
+  describe( 'register() saga functionality', () => {
+    const action = {
+      type: CREATE_USER_REQUEST,
+      payload: { email: 'test', password: 'test' },
+    };
+    const { email, password } = action.payload;
+    const gen = cloneableGenerator( register )( action );
+    const response = { user: { email: 'test', uid: 1 } };
+    const { uid } = response.user;
+
+    it( 'should put showLoadingAction()', () => {
+      expect( gen.next().value )
+        .toEqual( put( showLoadingAction( { dataType: AUTHENTICATION } ) ) );
+    } );
+
+    it( 'should call registerREST', () => {
+      expect( gen.next( response ).value ).toEqual( call( registerREST, email, password ) );
+    } );
+
+    it( 'should put createUserSuccessAction()', () => {
+      expect( gen.next( response ).value )
+        .toEqual(
+          put( createUserSuccessAction( { email: 'test', uid: 1 } ) ),
+        );
+    } );
+
+    it( 'should call createUserDocumentREST', () => {
+      expect( gen.next().value ).toEqual( call( createUserDocumentREST, uid, email ) );
+    } );
+
+    it( 'should handle error by put createUserFailedAction() and put handleErrorAction()', () => {
+      const clone = gen.clone();
+      const error = {};
+
+      expect( clone.throw( error ).value ).toEqual( put( createUserFailedAction() ) );
+
+      expect( clone.next().value ).toEqual( put(
+        handleErrorAction( { error, dataType: AUTHENTICATION } ),
+      ) );
+
+    } );
+
+    it( 'should put hideLoadingAction()', () => {
+      const payload = { dataType: AUTHENTICATION };
+      expect( gen.next().value ).toEqual( put( hideLoadingAction( payload ) ) );
+    } );
+
+
+  } );
 
   describe( 'saga watcher', () => {
     it( 'watchLoginRequest() should create a saga watcher for LOGIN_REQUEST', () => {
@@ -122,15 +147,18 @@ describe( 'Authentication saga functionality', () => {
         ) ) );
     } );
 
+    it( 'watchRegisterRequest() should create a saga watcher for CREATE_USER_REQUEST', () => {
+      const gen = cloneableGenerator( watchRegisterRequest )();
 
-    // it( 'watchAuthChange() should create a saga watcher for auth event emitter', () => {
-    //   const gen = cloneableGenerator( watchAuthChanges )();
-    //
-    //   expect( JSON.stringify( gen.next().value ) )
-    //     .toEqual( JSON.stringify( fork(
-    //       takeEvery,
-    //     ) ) )
-    // } );
+      expect( JSON.stringify( gen.next().value ) )
+        .toEqual( JSON.stringify( fork(
+          takeEvery,
+          CREATE_USER_REQUEST,
+          register,
+        ) ) );
+
+    } );
+
   } );
 
 } );
