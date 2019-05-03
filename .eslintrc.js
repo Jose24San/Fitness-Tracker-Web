@@ -33,6 +33,8 @@ module.exports = {
     'padded-blocks': 'off',
     'brace-style': 'off',
     'new-cap': 'off',
+    'template-curly-spacing': 'off',
+    'arrow-body-style': 'off',
 
     // react specific rules
     'react/jsx-filename-extension': [ 1, { 'extensions': [ '.js', '.jsx' ] } ],

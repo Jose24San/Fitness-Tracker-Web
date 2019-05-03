@@ -21,13 +21,12 @@ const styles = theme => ( {
   },
 } );
 
-function SideMenu( props ) {
-  const { classes } = props;
+function SideMenu( { classes, history } ) {
   return (
     <div className={ classes.root }>
       <List component="nav">
 
-        <ListItem button>
+        <ListItem button onClick={ () => history.push( '/dashboard' ) }>
           <ListItemIcon className={ classes.white }>
             <InboxIcon />
           </ListItemIcon>
@@ -37,10 +36,11 @@ function SideMenu( props ) {
           />
         </ListItem>
 
-        <ListItem button>
+        <ListItem button onClick={ () => history.push( '/dashboard/build' ) }>
           <ListItemIcon className={ classes.white }>
             <DraftsIcon />
           </ListItemIcon>
+
           <ListItemText
             classes={ { primary: classes.white } }
             primary="Build"
@@ -75,6 +75,7 @@ function SideMenu( props ) {
 
 SideMenu.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object,
 };
 
 export default withStyles( styles )( SideMenu );
