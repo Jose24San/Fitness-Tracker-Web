@@ -16,6 +16,7 @@ import { userDocumentListener } from './user';
 import { bodyLogsListener } from './bodyLogs';
 import { completedExerciseListener } from './completedExercises';
 import { savedWorkoutsListener } from './savedWorkouts';
+import { exerciseListListener } from './exerciseList';
 
 export function* loginREST( email, password ) {
   return yield call(
@@ -121,6 +122,7 @@ export function* watchAuthchanges() {
       yield fork( userDocumentListener, uid );
       yield fork( completedExerciseListener, uid );
       yield fork( savedWorkoutsListener, uid );
+      yield fork( exerciseListListener, uid );
     }
   }
 }

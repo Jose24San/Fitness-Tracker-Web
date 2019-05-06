@@ -15,6 +15,7 @@ export function* completedExerciseListener( uid ) {
     const listener = firebase.firestore()
       .collection( 'completedExercises' )
       .where( 'userId', '==', uid )
+      .orderBy( 'trackedOn', 'desc' )
       .onSnapshot( snapshot => {
 
         const completedExercises = [];

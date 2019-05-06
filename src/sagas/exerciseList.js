@@ -2,19 +2,18 @@ import { eventChannel } from 'redux-saga';
 import { put, take } from 'redux-saga/effects';
 import * as firebase from 'firebase';
 import { hideLoadingAction, showLoadingAction } from '../actions/loading';
-import { BODY_LOGS, SAVED_WORKOUTS } from '../constants/reducerObjects';
-import { listenForSavedWorkoutsAction, receivedSavedWorkoutsAction } from '../actions/savedWorkouts';
+import { EXERCISE_LIST } from '../constants/reducerObjects';
+import { listenForExerciseListAction, receivedExerciseListAction } from '../actions/exerciseList';
 
-export function* savedWorkoutsListener( uid ) {
+
+export function* exerciseListListener( uid ) {
   // #1
-  yield put( showLoadingAction( { dataType: BODY_LOGS } ) );
-  yield put( listenForSavedWorkoutsAction( { uid } ) );
+  yield put( showLoadingAction( { dataType: EXERCISE_LIST } ) );
+  yield put( listenForExerciseListAction( { uid } ) );
 
   const channel = new eventChannel( emiter => {
     const listener = firebase.firestore()
-      .collection( 'savedWorkouts' )
-      .where( 'userId', '==', uid )
-      .orderBy( 'created', 'desc' )
+      .collection( 'exerciseList' )
       .onSnapshot( snapShot => {
 
         const savedWorkouts = [];
@@ -35,7 +34,7 @@ export function* savedWorkoutsListener( uid ) {
   while ( true ) {
     const response = yield take( channel );
 
-    yield put( receivedSavedWorkoutsAction( response ) );
-    yield put( hideLoadingAction( { dataType: SAVED_WORKOUTS } ) );
+    yield put( receivedExerciseListAction( response ) );
+    yield put( hideLoadingAction( { dataType: EXERCISE_LIST } ) );
   }
 }

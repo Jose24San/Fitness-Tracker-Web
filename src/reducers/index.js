@@ -13,6 +13,7 @@ import authentication from './authentication';
 import routing from './routing';
 import bodyLogs from './bodyLogs';
 import completedExercises from './completedExercises';
+import savedWorkouts from './savedWorkouts';
 
 const reducers = combineReducers( {
   // Domain data from the server
@@ -25,6 +26,7 @@ const reducers = combineReducers( {
   loading,
   errors,
   routing,
+  savedWorkouts,
 
   // EDIT state for core Domains in app
   authentication,

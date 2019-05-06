@@ -19,6 +19,7 @@ export function* bodyLogsListener( uid ) {
     const listener = firebase.firestore()
       .collection( 'bodyLogs' )
       .where( 'userId', '==', uid )
+      .orderBy( 'trackedOn', 'desc' )
       .onSnapshot( querySnapshot => {
 
         const bodyLogs = [];
@@ -26,9 +27,7 @@ export function* bodyLogsListener( uid ) {
           bodyLogs.push( { uid: document.id, ...document.data() } );
         } );
 
-        const sorted = dateHelpers.sortByDate( bodyLogs, 'descending', 'trackedOn' );
-
-        emiter( sorted );
+        emiter( bodyLogs );
       } );
 
     // #2
