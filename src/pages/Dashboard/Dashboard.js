@@ -8,6 +8,12 @@ import SideMenu from '../../components/Menu/SideMenu';
 import Grid from '../../containers/Dashboard/Grid';
 import Build from './Build';
 
+const styles = {
+  container: {
+    display: 'flex',
+    height: '100%',
+  },
+};
 
 class Dashboard extends Component {
   constructor( props ) {
@@ -24,7 +30,7 @@ class Dashboard extends Component {
     // }
 
     return (
-      <div style={ { display: 'flex' } }>
+      <div style={ styles.container }>
         <SideMenu history={ this.props.history } />
 
         <Route path="/dashboard" exact component={ Grid } />

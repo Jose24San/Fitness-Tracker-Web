@@ -10,7 +10,6 @@ import Login from './pages/Authentication/Login';
 import { firebaseService } from './utilities/firebase';
 import Dashboard from './pages/Dashboard/Dashboard';
 
-
 const config = {
   apiKey: 'AIzaSyDqocPOu_ZMLivtKW1xk1WdzrR29zZooA8',
   authDomain: 'fitness-tracker-a5204.firebaseapp.com',

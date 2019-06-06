@@ -21,11 +21,11 @@ class Build extends Component {
   }
 
   query = () => {
-    firebase.firestore().collection( 'savedWorkouts' )
+    firebase.firestore().collection( 'completedExercises' )
       .where( 'userId', '==', 'JbdTa6ILGLRLecFAoWUB3sp9Stu1' )
-    // .where( 'exercise', '==', 'Barbell Curl' )
+      .where( 'exercise', '==', 'Barbell Curl' )
       // .where( 'names', 'array-contains', 'Barbell Curl' )
-      .orderBy( 'created', 'desc' )
+      // .orderBy( 'created', 'desc' )
       .get()
       .then( querySnapshot => {
         const data = [];

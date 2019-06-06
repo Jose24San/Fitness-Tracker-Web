@@ -9,10 +9,10 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import globalTheme from '../../config/theme';
 
-const styles = theme => ( {
+const styles = () => ( {
   root: {
     width: '100%',
-    height: '100%',
+    // height: '100%',
     maxWidth: 225,
     backgroundColor: globalTheme.DARK_BACKGROUND,
   },

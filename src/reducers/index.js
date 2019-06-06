@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
 import exerciseList from './exerciseList';
-import programs from './programs';
-import workouts from './workouts';
 import loading from './loading';
 import errors from './errors';
 import profile from './profile';
@@ -21,8 +19,6 @@ const reducers = combineReducers( {
   completedExercises,
   user,
   exerciseList,
-  programs,
-  workouts,
   loading,
   errors,
   routing,

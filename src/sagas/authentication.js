@@ -120,9 +120,9 @@ export function* watchAuthchanges() {
     if ( uid ) {
       yield fork( bodyLogsListener, uid );
       yield fork( userDocumentListener, uid );
-      yield fork( completedExerciseListener, uid );
-      yield fork( savedWorkoutsListener, uid );
-      yield fork( exerciseListListener, uid );
+      // yield fork( completedExerciseListener, uid );
+      // yield fork( savedWorkoutsListener, uid );
+      // yield fork( exerciseListListener, uid );
     }
   }
 }
